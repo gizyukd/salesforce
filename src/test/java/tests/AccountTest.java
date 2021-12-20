@@ -21,7 +21,6 @@ public class AccountTest extends BaseTest{
 
         assertTrue(isAccountModalOpen, "Попап не открылся" );
 
-        // TODO заполнить все поля
         // TODO добавить дескрипшин к аннотациям тест всех тестов
         // Account account = new Account("TestAccName", "www.tms.by", "Investor");
         Account account = new Account(
@@ -49,8 +48,6 @@ public class AccountTest extends BaseTest{
                 .isPageOpen();
 
         assertTrue(isDetailsPageOpen, "Страница Details не открылась" );
-
-        // TODO write getLinkValueByName
 
         assertEquals(accountDetailsPage.getPhoneFieldValueByName("Phone"), account.getPhone(),"Не занесено значение в поле Phone");
         assertEquals(accountDetailsPage.getDefaultFieldValueByName("Account Name"), account.getAccountName(),"Не занесено значение в поле Account Name");

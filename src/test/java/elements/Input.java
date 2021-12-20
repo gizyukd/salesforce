@@ -8,7 +8,9 @@ public class Input {
     String label;
     String tag;
 
-    String inputLocator = "//div[contains(@class, 'modal-body')]//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//%s";
+    //String inputLocator = "//div[contains(@class, 'modal-body')]//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//%s";
+    String inputLocator = "//div[contains(@class, 'modal-body')]//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//input"
+            + "|//div[contains(@class, 'modal-body')]//*[text()='%s']/ancestor::lightning-input//div";
 
     public Input(WebDriver driver, String label) {
         this.driver = driver;
@@ -24,6 +26,6 @@ public class Input {
 
     public void write(String text){
         System.out.printf("Writing text '%s' input with label: '%s'%n", text, this.label);
-        driver.findElement(By.xpath(String.format(inputLocator, this.label, this.tag))).sendKeys(text);
+        driver.findElement(By.xpath(String.format(inputLocator, this.label, this.label))).sendKeys(text);
     }
 }
