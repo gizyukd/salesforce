@@ -10,7 +10,6 @@ public class Input {
 
     String inputLocator = "//div[contains(@class, 'modal-body')]//span[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//%s";
 
-
     public Input(WebDriver driver, String label) {
         this.driver = driver;
         this.label = label;

@@ -10,7 +10,6 @@ public class AccountModalPage extends BasePage{
 
     public static final By MODAL_TITLE = By.xpath("//*[contains(@class, 'inlineTitle')]");
 
-
     public AccountModalPage(WebDriver driver) {
         super(driver);
     }
@@ -21,16 +20,12 @@ public class AccountModalPage extends BasePage{
     }
 
     public AccountDetailsPage create(Account account) {
-
         new Input(driver, "Phone").write(account.getPhone());
         new Input(driver, "Account Name").write(account.getAccountName());
-       // new Input(driver, "Fax").write(account.getFax());
-        new Input(driver, "Parent Account").write(account.getParentAccount());
         new Input(driver, "Website").write(account.getWebSite());
         new Dropdown(driver, "Type").selectOption(account.getType());
         new Input(driver, "Employees").write(account.getEmployees());
         new Dropdown(driver, "Industry").selectOption(account.getIndustry());
-     //   new Input(driver, "Annual Revenue").write(account.getAnnualRevenue());
         new Input(driver, "Description", "textarea").write(account.getDescription());
         new Input(driver, "Billing Street", "textarea").write(account.getBillingStreet());
         new Input(driver, "Shipping Street", "textarea").write(account.getShippingStreet());

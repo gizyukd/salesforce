@@ -18,7 +18,7 @@ public class AccountListPage extends BasePage{
     }
 
     public AccountListPage open(){
-        driver.get(BASE_URL + "/lightning/o/Account/list");
+        driver.get(BASE_URL + "/lightning/o/Account/list?filterName=Recent");
         return this;
     }
 

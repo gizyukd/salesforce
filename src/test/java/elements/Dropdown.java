@@ -19,6 +19,5 @@ public class Dropdown {
         System.out.printf("Select option '%s' into dropdown with label: '%s'%n", option, this.label);
         driver.findElement(By.xpath(String.format(dropdownLocator, this.label))).click();
         driver.findElement(By.xpath(String.format(optionLocator, option))).click();
-
     }
 }

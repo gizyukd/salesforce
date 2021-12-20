@@ -3,13 +3,11 @@ package models;
 public class Account {
     String phone;
     String accountName;
-    //String fax;
     String parentAccount;
     String webSite;
     String type;
     String employees;
     String industry;
-    //String annualRevenue;
     String description;
     String billingStreet;
     String shippingStreet;
@@ -22,16 +20,13 @@ public class Account {
     String shippingZip;
     String shippingCountry;
 
-    public Account(String phone, String accountName, String parentAccount, String webSite, String type, String employees, String industry, String description, String billingStreet, String shippingStreet, String billingCity, String billingState, String shippingCity, String shippingState, String billingZip, String billingCountry, String shippingZip, String shippingCountry) {
+    public Account(String phone, String accountName, String webSite, String type, String employees, String industry, String description, String billingStreet, String shippingStreet, String billingCity, String billingState, String shippingCity, String shippingState, String billingZip, String billingCountry, String shippingZip, String shippingCountry) {
         this.phone = phone;
         this.accountName = accountName;
-        //this.fax = fax;
-        this.parentAccount = parentAccount;
         this.webSite = webSite;
         this.type = type;
         this.employees = employees;
         this.industry = industry;
-        //this.annualRevenue = annualRevenue;
         this.description = description;
         this.billingStreet = billingStreet;
         this.shippingStreet = shippingStreet;
@@ -59,14 +54,6 @@ public class Account {
         this.phone = phone;
     }
 
-//    public String getFax() {
-//        return fax;
-//    }
-//
-//    public void setFax(String fax) {
-//        this.fax = fax;
-//    }
-
     public String getParentAccount() {
         return parentAccount;
     }
@@ -90,14 +77,6 @@ public class Account {
     public void setIndustry(String industry) {
         this.industry = industry;
     }
-
-//    public String getAnnualRevenue() {
-//        return annualRevenue;
-//    }
-//
-//    public void setAnnualRevenue(String annualRevenue) {
-//        this.annualRevenue = annualRevenue;
-//    }
 
     public String getDescription() {
         return description;
@@ -186,7 +165,6 @@ public class Account {
     public void setShippingCountry(String shippingCountry) {
         this.shippingCountry = shippingCountry;
     }
-
 
     public void setAccountName(String accountName) {
         this.accountName = accountName;
