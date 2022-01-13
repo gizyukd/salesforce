@@ -1,9 +1,11 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
+@Log4j2
 public class AccountDetailsPage extends BasePage{
 
     public static final By DETAILS_LINK = By.xpath("//a[@id='detailTab__item']");
@@ -21,44 +23,60 @@ public class AccountDetailsPage extends BasePage{
 
     @Override
     public boolean isPageOpen() {
+        log.debug("start checking if the page with details about an account is opened");
         return isExist(DETAILS_LINK);
     }
 
     public String getDefaultFieldValueByName(String fieldName) {
+        getterLog(fieldName);
         return driver.findElement(By.xpath(String.format(fieldValue, fieldName))).getText();
     }
 
     public String getPhoneFieldValueByName(String fieldName) {
+        getterLog(fieldName);
         return driver.findElement(By.xpath(String.format(phoneFieldValue, fieldName))).getText();
     }
 
     public String getEmployeeFieldValueByName(String fieldName) {
+        getterLog(fieldName);
         return driver.findElement(By.xpath(String.format(employeesFieldValue, fieldName))).getText();
     }
 
     public String getWebsiteFieldValueByName(String fieldName) {
+        getterLog(fieldName);
         return driver.findElement(By.xpath(String.format(websiteFieldValue, fieldName))).getText();
     }
 
     public String getStreetFieldValueByName(String fieldName) {
+        getterLog(fieldName);
         return driver.findElement(By.xpath(String.format(streetFieldValue, fieldName))).getText();
     }
 
     public String getCityAndStateFieldValueByName(String fieldName) {
+        getterLog(fieldName);
         return driver.findElement(By.xpath(String.format(cityAndStateFieldValue, fieldName))).getText();
     }
 
     public String getCountryFieldValueByName(String fieldName) {
+        getterLog(fieldName);
         return driver.findElement(By.xpath(String.format(countryFieldValue, fieldName))).getText();
     }
 
+    public void getterLog(String fieldName)
+    {
+        log.debug("return value of field: " + fieldName);
+    }
+
     public AccountDetailsPage clickOnDetailsTab(){
+        log.info("Click on tab 'Details' with Xpath " + DETAILS_LINK);
         driver.findElement(DETAILS_LINK).click();
+        log.info("Tab 'Details' was clicked");
         return new AccountDetailsPage(driver);
     }
 
     public void moveToCountryField(String fieldName) {
         Actions action = new Actions(driver);
+        log.debug("Move to 'Country' field");
         action.moveToElement(driver.findElement(By.xpath(String.format(countryFieldValue, fieldName))));
     }
 }

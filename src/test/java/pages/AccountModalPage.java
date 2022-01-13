@@ -2,10 +2,12 @@ package pages;
 
 import elements.Dropdown;
 import elements.Input;
+import lombok.extern.log4j.Log4j2;
 import models.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+@Log4j2
 public class AccountModalPage extends BasePage{
 
     public static final By MODAL_TITLE = By.xpath("//*[contains(@class, 'inlineTitle')]");
@@ -16,10 +18,13 @@ public class AccountModalPage extends BasePage{
 
     @Override
     public boolean isPageOpen() {
+        log.debug("start checking if account modal page is opened");
         return isExist(MODAL_TITLE);
     }
 
     public AccountDetailsPage create(Account account) {
+        log.info("filling fields of Account modal page");
+
         new Input(driver, "Phone").write(account.getPhone());
         new Input(driver, "Account Name").write(account.getAccountName());
         new Input(driver, "Website").write(account.getWebSite());
@@ -38,11 +43,14 @@ public class AccountModalPage extends BasePage{
         new Input(driver, "Shipping Zip/Postal Code").write(account.getShippingZip());
         new Input(driver, "Shipping Country").write(account.getShippingCountry());
 
+        log.info("filling fields of Account modal page");
         return clickSave();
     }
 
     public AccountDetailsPage clickSave(){
+        log.info(String.format("Clicking on Save button with Xpath: '%s'", SAVE_BUTTON));
         driver.findElement(SAVE_BUTTON).click();
+        log.info("Save button was clicked");
         return new AccountDetailsPage(driver);
     }
 }

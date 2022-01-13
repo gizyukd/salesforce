@@ -1,54 +1,51 @@
 package tests;
 
+import lombok.extern.log4j.Log4j2;
 import models.Account;
+import models.AccountFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+@Log4j2
 public class AccountTest extends BaseTest{
+
     @Test
     public void accountShouldBeCreated(){
+        log.info("Start running test accountShouldBeCreated");
+        log.info("Log in");
         loginPage
                 .open()
-                .login("king.giz-gy4p@force.com" , "SalesForce21");
+                .login("king.giz-et61@force.com" , "Tms09onl");
+        log.info("Log in is successful");
 
+        log.info("Open Accounts Page and click on New button");
         boolean isAccountModalOpen = accountListPage
                 .open()
                 .clickNew()
                 .isPageOpen();
 
+        log.info("Check if Account Modal page was opened");
         assertTrue(isAccountModalOpen, "Попап не открылся" );
 
-        // TODO добавить дескрипшин к аннотациям тест всех тестов
-        // Account account = new Account("TestAccName", "www.tms.by", "Investor");
-        Account account = new Account(
-                "+375336001004",
-                "AccountName",
-                "www.website.by",
-                "Investor",
-                "23",
-                "Banking",
-                "description",
-                "Billing street",
-                "Shipping street",
-                "Billing city",
-                "Billing State",
-                "Shipping city",
-                "Shipping state",
-                "Billing zip",
-                "Billing country",
-                "Shipping zip",
-                "Shipping country");
+        log.debug("Creating a new Account object");
+        Account account = AccountFactory.get();
 
+        log.info("Start creating a new account");
         boolean isDetailsPageOpen = accountModalPage
                 .create(account)
                 .clickOnDetailsTab()
                 .isPageOpen();
 
+        log.info("Check if Account's Detail page was opened");
         assertTrue(isDetailsPageOpen, "Страница Details не открылась" );
+        log.info("Account's Detail page was opened");
 
+        log.info("Check if data of created account matches with written in modal page fields");
         assertEquals(accountDetailsPage.getPhoneFieldValueByName("Phone"), account.getPhone(),"Не занесено значение в поле Phone");
         assertEquals(accountDetailsPage.getDefaultFieldValueByName("Account Name"), account.getAccountName(),"Не занесено значение в поле Account Name");
         assertEquals(accountDetailsPage.getWebsiteFieldValueByName("Website"), account.getWebSite(),"Не занесено значение в поле Website");
@@ -63,6 +60,9 @@ public class AccountTest extends BaseTest{
         accountDetailsPage.moveToCountryField("Billing Address");
         assertEquals(accountDetailsPage.getCountryFieldValueByName("Billing Address"), account.getBillingCountry(),"Не занесено значение в поле Billing Country");
         assertEquals(accountDetailsPage.getCountryFieldValueByName("Shipping Address"), account.getShippingCountry(),"Не занесено значение в поле Shipping Country");
+
+        log.info("Data of created account fully matches with written in modal page fields");
+        log.info("Finish test " + "accountShouldBeCreated");
 
     }
 }

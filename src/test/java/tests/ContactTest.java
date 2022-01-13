@@ -11,7 +11,7 @@ public class ContactTest extends BaseTest{
     public void contactShouldBeCreated() {
         loginPage
                 .open()
-                .login("king.giz-gy4p@force.com", "SalesForce21");
+                .login("king.giz-et61@force.com" , "Tms09onl");
 
         boolean isContactModalOpen = contactListPage
                 .open()
